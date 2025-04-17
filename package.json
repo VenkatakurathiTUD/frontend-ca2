@@ -9,9 +9,11 @@
     "test": "mocha --exit"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "mongodb": "^3.1.13",
     "request": "^2.81.0",
-    "sinon": "^15.0.4"
+    "sinon": "^15.0.4",
+    "querystring": "^0.2.1"
   },
   "test-unit": "NODE_ENV=test mocha '/**/*.spec.js'",
   "devDependencies": {
