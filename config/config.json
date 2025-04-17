@@ -3,7 +3,7 @@
         "config_id": "development",
         "app_name": "Recipe Tracker",
         "webservice_host": "localhost",
-        "webservice_port": 8081,
+        "webservice_port": 3000,
         "exposedPort": 22137
     }
 }
