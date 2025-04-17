@@ -2,6 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const port = 3000;
+const http = require('http'); // Import http at the top
 
 // Middleware to parse request body for POST requests
 app.use(express.urlencoded({ extended: false })); // For URL-encoded data
@@ -34,7 +35,6 @@ app.post('/', (req, res) => {
   };
 
   // Send the data to the web service
-  const http = require('http');
   const options = {
     hostname: global.gConfig.webservice_host,
     port: global.gConfig.webservice_port,
@@ -83,6 +83,7 @@ app.get('/', (req, res) => {
 
     // Read and display the saved recipes after form submission (with a delay)
     setTimeout(function () {
+      // const http = require('http');  // Removed declaration here
       const options = {
         hostname: global.gConfig.webservice_host,
         port: global.gConfig.webservice_port,
