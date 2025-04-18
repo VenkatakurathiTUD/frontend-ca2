@@ -29,8 +29,21 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 script {
-                    sh 'kubectl apply -f k8s/deployment.yaml'
-                    sh 'kubectl apply -f k8s/service.yaml'
+                    echo "Setting Minikube Docker environment..."
+                    sh 'eval $(minikube docker-env)'
+
+                    echo "Applying Kubernetes deployment..."
+                    retry(count: env.KUBECTL_APPLY_RETRY) {
+                        sh 'kubectl apply -f k8s/deployment.yaml'
+                    }
+
+                    echo "Applying Kubernetes service..."
+                    retry(count: env.KUBECTL_APPLY_RETRY) {
+                        sh 'kubectl apply -f k8s/service.yaml' // Make sure you have this file now
+                    }
+
+                    echo "Reverting to host Docker environment..."
+                    sh 'eval $(minikube docker-env -u)'
                 }
             }
         }
