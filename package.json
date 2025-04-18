@@ -11,13 +11,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.1.13",
+    "querystring": "^0.2.1",
     "request": "^2.81.0",
-    "sinon": "^15.0.4",
-    "querystring": "^0.2.1"
+    "sinon": "^15.0.4"
   },
   "test-unit": "NODE_ENV=test mocha '/**/*.spec.js'",
   "devDependencies": {
     "chai": "^4.3.7",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "vite": "^6.3.2"
   }
 }

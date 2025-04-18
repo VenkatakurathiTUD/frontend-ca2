@@ -21,9 +21,11 @@ pipeline {
                 sh 'npm test || echo "No tests to run"'
             }
         }
-        stage('Build Application') {
+        stage('Dockerize the Application') {
             steps {
-                sh 'npm run build'
+                script {
+                sh 'docker build -t frontend-app:latest .'
+                }
             }
         }
     }
