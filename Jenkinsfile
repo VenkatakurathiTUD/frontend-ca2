@@ -17,6 +17,9 @@ pipeline {
             }
         }
         stage('Dockerize the Application') {
+            environment {
+                PATH = "/usr/local/bin:${env.PATH}"
+            }
             steps {
                 script {
                     docker.build('frontend-app:latest', '.')
