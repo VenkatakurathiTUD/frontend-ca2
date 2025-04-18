@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: frontend-app-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: frontend-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 3000
-      nodePort: 30664
