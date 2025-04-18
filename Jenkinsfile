@@ -22,7 +22,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.build('frontend-app:latest', '.')
+                    sh 'docker build -t frontend-app:latest .'
                 }
             }
         }
