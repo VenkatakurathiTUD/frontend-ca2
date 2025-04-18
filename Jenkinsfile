@@ -26,7 +26,7 @@ pipeline {
                     sh 'docker build -t frontend-app:latest .'
                 }
             }
-            stage('Deploy to Minikube') {
+        stage('Deploy to Minikube') {
             steps {
                 script {
                     sh 'kubectl apply -f k8s/deployment.yaml'
