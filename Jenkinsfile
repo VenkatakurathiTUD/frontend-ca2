@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'venkatakurathi/frontend-ca2:latest'
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
