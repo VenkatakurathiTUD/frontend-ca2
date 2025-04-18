@@ -29,9 +29,6 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 script {
-                    
-                    sh 'minikube config set driver docker'
-                    sh 'minikube start'
 
                     echo "Setting Minikube Docker environment..."
                     sh 'eval $(minikube docker-env)'
@@ -53,4 +50,3 @@ pipeline {
         }
     }
 }
-
