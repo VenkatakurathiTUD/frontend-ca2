@@ -29,6 +29,7 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 script {
+                    sh 'eval $(minikube docker-env)'
                     sh 'kubectl apply -f k8s/deployment.yaml'
                     sh 'kubectl apply -f k8s/service.yaml'
                 }
