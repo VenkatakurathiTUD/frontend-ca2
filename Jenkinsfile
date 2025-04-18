@@ -20,12 +20,12 @@ pipeline {
             environment {
                 PATH = "/usr/local/bin:${env.PATH}"
             }
-        }
             steps {
                 script {
                     sh 'docker build -t frontend-app:latest .'
                 }
             }
+        }
         stage('Deploy to Minikube') {
             steps {
                 script {
