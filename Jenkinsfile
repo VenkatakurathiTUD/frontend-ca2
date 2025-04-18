@@ -9,17 +9,17 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh '/opt/homebrew/bin/npm install'
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                sh '/opt/homebrew/bin/npm test'
             }
         }
         stage('Build Application') {
             steps {
-                sh 'npm run build'
+                sh '/opt/homebrew/bin/npm run build'
             }
         }
     }
