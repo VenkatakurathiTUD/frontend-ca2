@@ -80,51 +80,8 @@ app.get('/', (req, res) => {
     res.write(`<style>${fileContents}</style>`);
     res.write(body);
     res.write(submitButton);
-
-    // Read and display the saved recipes after form submission (with a delay)
-    setTimeout(function () {
-      // const http = require('http');  // Removed declaration here
-      const options = {
-        hostname: global.gConfig.webservice_host,
-        port: global.gConfig.webservice_port,
-        path: '/recipes',
-        method: 'GET',
-      };
-
-      const req = http.request(options, (resp) => {
-        let data = '';
-        resp.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        resp.on('end', () => {
-          res.write('<div id="space"></div>');
-          res.write('<div id="logo">Your Previous Recipes</div>');
-          res.write('<div id="space"></div>');
-          res.write('<div id="results">Name | Ingredients | PrepTime</div>');
-          res.write('<div id="space"></div>');
-          try {
-            const myArr = JSON.parse(data);
-            myArr.forEach(recipe => {
-              res.write(`${recipe.name} | ${recipe.ingredients.join(', ')} | ${recipe.prepTimeInMinutes}<br/>`);
-            });
-          } catch (parseError) {
-            console.error("Error parsing recipe data:", parseError);
-            res.write('<div id="error">Error displaying recipes.</div>');
-          }
-          res.write('</div><div id="space"></div>');
-          res.end(endBody);
-        });
-
-        resp.on('error', (error) => {
-          console.error("Error fetching recipes:", error);
-          res.write('<div id="error">Failed to load recipes.</div>');
-          res.end(endBody);
-        });
-      });
-      req.end();
-    }, 2000);
-
+    res.write('<div id="space"></div><div id="logo">Backend not connected. Recipes will appear here once backend is ready.</div>');
+    res.end(endBody);
   } catch (error) {
     console.error("Error in GET '/':", error);
     res.status(500).send('Internal Server Error');
