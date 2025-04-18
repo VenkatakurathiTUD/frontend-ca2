@@ -24,7 +24,7 @@ pipeline {
         stage('Dockerize the Application') {
             steps {
                 script {
-                sh 'docker build -t frontend-app:latest .'
+                    docker.build('frontend-app:latest', '.')
                 }
             }
         }
