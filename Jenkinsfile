@@ -20,9 +20,17 @@ pipeline {
             environment {
                 PATH = "/usr/local/bin:${env.PATH}"
             }
+        }
             steps {
                 script {
                     sh 'docker build -t frontend-app:latest .'
+                }
+            }
+            stage('Deploy to Minikube') {
+            steps {
+                script {
+                    sh 'kubectl apply -f k8s/deployment.yaml'
+                    sh 'kubectl apply -f k8s/service.yaml'
                 }
             }
         }
