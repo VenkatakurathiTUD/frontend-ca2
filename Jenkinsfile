@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         PATH = "/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
-        KUBECTL_APPLY_RETRY = 3
     }
 
     stages {
@@ -31,20 +30,10 @@ pipeline {
             steps {
                 script {
 
-                    echo "Setting Minikube Docker environment..."
+                    
                     sh 'eval $(minikube docker-env)'
-
-                    echo "Applying Kubernetes deployment..."
-                    retry(count: env.KUBECTL_APPLY_RETRY) {
-                        sh 'kubectl apply -f k8s/deployment.yaml'
-                    }
-
-                    echo "Applying Kubernetes service..."
-                    retry(count: env.KUBECTL_APPLY_RETRY) {
-                        sh 'kubectl apply -f k8s/service.yaml'
-                    }
-
-                    echo "Reverting to host Docker environment..."
+                    sh 'kubectl apply -f k8s/deployment.yaml'
+                    sh 'kubectl apply -f k8s/service.yaml'
                     sh 'eval $(minikube docker-env -u)'
                 }
             }
